@@ -4,7 +4,9 @@ This repository demonstrates how to properly test Gradio applications using back
 
 
 
-https://github.com/user-attachments/assets/a7168aa8-05ec-4ac9-9b49-fba80bdde9c6
+
+https://github.com/user-attachments/assets/d18bf492-3a5c-42f7-9e2c-7ab581e6ae9c
+
 
 
 
