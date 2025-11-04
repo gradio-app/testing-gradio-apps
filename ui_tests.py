@@ -3,46 +3,10 @@ import gradio as gr
 from playwright.sync_api import sync_playwright, expect
 import threading
 import time
-from app import add, subtract, multiply, divide, square, calculate
+from app import demo
 
 def test_calculator_basic_operations():
     """Test basic calculator operations through the UI."""
-    with gr.Blocks(title="Calculator App") as demo:
-        gr.Markdown("# Simple Calculator")
-        gr.Markdown("Choose an operation and enter numbers to calculate.")
-        
-        with gr.Row():
-            operation = gr.Dropdown(
-                choices=["Add", "Subtract", "Multiply", "Divide", "Square"],
-                label="Operation",
-                value="Add"
-            )
-        
-        with gr.Row():
-            num1 = gr.Number(label="First Number", value=0)
-            num2 = gr.Number(label="Second Number (ignored for Square)", value=0)
-        
-        calculate_btn = gr.Button("Calculate", variant="primary")
-        result = gr.Textbox(label="Result", interactive=False)
-        
-        def update_visibility(operation):
-            if operation == "Square":
-                return gr.update(visible=False)
-            else:
-                return gr.update(visible=True)
-        
-        operation.change(
-            fn=update_visibility,
-            inputs=operation,
-            outputs=num2
-        )
-        
-        calculate_btn.click(
-            fn=calculate,
-            inputs=[operation, num1, num2],
-            outputs=result
-        )
-
     # Launch the demo
     _, url, _ = demo.launch(prevent_thread_lock=True)
     
@@ -71,42 +35,6 @@ def test_calculator_basic_operations():
 
 def test_calculator_square_operation():
     """Test that second input disappears for Square operation."""
-    with gr.Blocks(title="Calculator App") as demo:
-        gr.Markdown("# Simple Calculator")
-        gr.Markdown("Choose an operation and enter numbers to calculate.")
-        
-        with gr.Row():
-            operation = gr.Dropdown(
-                choices=["Add", "Subtract", "Multiply", "Divide", "Square"],
-                label="Operation",
-                value="Add"
-            )
-        
-        with gr.Row():
-            num1 = gr.Number(label="First Number", value=0)
-            num2 = gr.Number(label="Second Number (ignored for Square)", value=0)
-        
-        calculate_btn = gr.Button("Calculate", variant="primary")
-        result = gr.Textbox(label="Result", interactive=False)
-        
-        def update_visibility(operation):
-            if operation == "Square":
-                return gr.update(visible=False)
-            else:
-                return gr.update(visible=True)
-        
-        operation.change(
-            fn=update_visibility,
-            inputs=operation,
-            outputs=num2
-        )
-        
-        calculate_btn.click(
-            fn=calculate,
-            inputs=[operation, num1, num2],
-            outputs=result
-        )
-
     # Launch the demo
     _, url, _ = demo.launch(prevent_thread_lock=True)
     
@@ -148,42 +76,6 @@ def test_calculator_square_operation():
 
 def test_calculator_division_by_zero():
     """Test division by zero error handling."""
-    with gr.Blocks(title="Calculator App") as demo:
-        gr.Markdown("# Simple Calculator")
-        gr.Markdown("Choose an operation and enter numbers to calculate.")
-        
-        with gr.Row():
-            operation = gr.Dropdown(
-                choices=["Add", "Subtract", "Multiply", "Divide", "Square"],
-                label="Operation",
-                value="Add"
-            )
-        
-        with gr.Row():
-            num1 = gr.Number(label="First Number", value=0)
-            num2 = gr.Number(label="Second Number (ignored for Square)", value=0)
-        
-        calculate_btn = gr.Button("Calculate", variant="primary")
-        result = gr.Textbox(label="Result", interactive=False)
-        
-        def update_visibility(operation):
-            if operation == "Square":
-                return gr.update(visible=False)
-            else:
-                return gr.update(visible=True)
-        
-        operation.change(
-            fn=update_visibility,
-            inputs=operation,
-            outputs=num2
-        )
-        
-        calculate_btn.click(
-            fn=calculate,
-            inputs=[operation, num1, num2],
-            outputs=result
-        )
-
     # Launch the demo
     _, url, _ = demo.launch(prevent_thread_lock=True)
     
