@@ -1,4 +1,4 @@
-# Testing Gradio Apps
+# Testing Gradio Apps ⚒️
 
 This repository demonstrates how to properly test Gradio applications using backend unit tests and, in particular, **UI/UX testing with Playwright**.
 

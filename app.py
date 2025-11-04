@@ -60,6 +60,18 @@ with gr.Blocks(title="Calculator App") as demo:
     
     result = gr.Textbox(label="Result", interactive=False)
     
+    def update_visibility(operation):
+        if operation == "Square":
+            return gr.update(visible=False)
+        else:
+            return gr.update(visible=True)
+    
+    operation.change(
+        fn=update_visibility,
+        inputs=operation,
+        outputs=num2
+    )
+    
     calculate_btn.click(
         fn=calculate,
         inputs=[operation, num1, num2],
