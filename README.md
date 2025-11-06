@@ -33,7 +33,7 @@ For user interface and user interaction testing, we recommend using **Playwright
 - Interact with UI components (inputs, buttons, etc.)
 - Verify that the UI appears or updates as expected
 
-*Why do we recommend Playwright for testing your Gradio apps?*
+## Why do we recommend Playwright?
 
 1. **Playwright has Python API**: You can write your tests, including all of the web browser interactions, entirely in Python (just like your Gradio web app!).
 2. **Playwright fits great with Gradio**: Playwright works out-of-the-box with Gradio, and in fact, we use Playwright within Gradio itself for our interaction tests.
