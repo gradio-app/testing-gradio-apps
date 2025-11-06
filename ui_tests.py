@@ -56,7 +56,6 @@ def test_calculator_square_operation():
 
 def test_calculator_division_by_zero():
     """Test division by zero error handling."""
-    # Launch the demo
     _, url, _ = demo.launch(prevent_thread_lock=True)
     try:
         with sync_playwright() as p:
