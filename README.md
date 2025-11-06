@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d18bf492-3a5c-42f7-9e2c-7ab581e6ae9c
 
 
 
-## Why Test Gradio Apps?
+## Why kind of tests does your Gradio app need?
 
 When building Gradio apps, you should test both the:
 
@@ -103,7 +103,7 @@ The UI/UX Playwright test file (called `ui_tests.py`) tests the expected behavio
 
 ## Exercise for the Reader
 
-Now that you know how to set up and run the interaction tests,  As mentioned earlier, instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
+Now that you know how to set up and run the interaction tests, **we recommend you write 1 more interaction test for the calculator app**. As mentioned earlier, instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
 
 ```bash
 python app.py
