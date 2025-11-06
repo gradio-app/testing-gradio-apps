@@ -48,16 +48,13 @@ with gr.Blocks(title="Calculator App") as demo:
     gr.Markdown("# Simple Calculator")
     gr.Markdown("Choose an operation and enter numbers to calculate.")
 
-    with gr.Row():
-        operation = gr.Dropdown(
-            choices=["Add", "Subtract", "Multiply", "Divide", "Square"],
-            label="Operation",
-            value="Add",
-        )
-
-    with gr.Row():
-        num1 = gr.Number(label="First Number", value=0)
-        num2 = gr.Number(label="Second Number (ignored for Square)", value=0)
+    num1 = gr.Number(label="First Number", value=0)
+    operation = gr.Dropdown(
+        choices=["Add", "Subtract", "Multiply", "Divide", "Square"],
+        label="Operation",
+        value="Add",
+    )
+    num2 = gr.Number(label="Second Number (ignored for Square)", value=0)
 
     calculate_btn = gr.Button("Calculate", variant="primary")
 
@@ -65,9 +62,9 @@ with gr.Blocks(title="Calculator App") as demo:
 
     def update_visibility(operation):
         if operation == "Square":
-            return gr.update(visible=False)
+            return gr.Number(visible=False)
         else:
-            return gr.update(visible=True)
+            return gr.Number(visible=True)
 
     operation.change(fn=update_visibility, inputs=operation, outputs=num2)
 

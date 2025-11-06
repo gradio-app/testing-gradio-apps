@@ -14,64 +14,42 @@ def test_calculator_basic_operations():
             page.set_default_timeout(1000)
             page.goto(url)
 
-            page.wait_for_selector("button:has-text('Calculate')")
-
-            page.locator("input[aria-label='First Number']").fill("5")
-            page.locator("input[aria-label='Second Number (ignored for Square)']").fill(
-                "3"
-            )
-            page.click("button:has-text('Calculate')")
-
-            page.wait_for_timeout(1000)
-            result_text = page.locator("textarea[aria-label='Result']").input_value()
-            assert result_text == "8"
+            page.get_by_label("First Number").click()
+            page.get_by_label("First Number").fill("3")
+            page.get_by_label("Second Number (ignored for").click()
+            page.get_by_label("Second Number (ignored for").fill("4")
+            page.get_by_role("button", name="Calculate").click()
+            locator = page.get_by_test_id("textbox")
+            expect(locator).to_have_value("7")
 
             browser.close()
     finally:
         demo.close()
 
 
-# def test_calculator_square_operation():
-#     """Test that second input disappears for Square operation."""
-#     _, url, _ = demo.launch(prevent_thread_lock=True)
+def test_calculator_square_operation():
+    """Test that second input disappears for Square operation."""
+    _, url, _ = demo.launch(prevent_thread_lock=True)
 
-#     try:
-#         with sync_playwright() as p:
-#             browser = p.chromium.launch()
-#             page = browser.new_page()
-#             page.goto(url)
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+            page.set_default_timeout(1000)
+            page.goto(url)
 
-#             # Wait for page to load
-#             page.wait_for_selector("button:has-text('Calculate')")
+            locator = page.get_by_label("Second Number (ignored for Square)")
+            expect(locator).to_be_visible()
+            page.get_by_label("Operation").click()
+            page.get_by_label("First Number").fill("3")
+            page.locator("#component-4 div").filter(has_text="Operation").locator("div").nth(2).click()
+            page.get_by_label("Square", exact=True).click()
+            locator = page.get_by_label("Second Number (ignored for Square)")
+            expect(locator).to_be_hidden()
 
-#             # Check that second input is visible initially
-#             second_input = page.locator(
-#                 "input[aria-label='Second Number (ignored for Square)']"
-#             )
-#             expect(second_input).to_be_visible()
-
-#             # Select Square operation
-#             page.click(".dropdown")
-#             page.click("text=Square")
-
-#             # Wait for UI update
-#             page.wait_for_timeout(1000)
-
-#             # Check that second input is now hidden
-#             expect(second_input).to_be_hidden()
-
-#             # Test square calculation
-#             page.locator("input[aria-label='First Number']").fill("4")
-#             page.click("button:has-text('Calculate')")
-
-#             # Wait for result and verify
-#             page.wait_for_timeout(1000)
-#             result_text = page.locator("textarea[aria-label='Result']").input_value()
-#             assert result_text == "16"
-
-#             browser.close()
-#     finally:
-#         demo.close()
+            browser.close()
+    finally:
+        demo.close()
 
 
 # def test_calculator_division_by_zero():

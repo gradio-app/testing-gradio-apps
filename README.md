@@ -109,7 +109,7 @@ Now that you know how to set up and run the interaction tests,  As mentioned ear
 python app.py
 ```
 
-and then (assuming the Gradio app launches on port 7860):
+and then in another terminal (assuming the Gradio app launches on port 7860):
 
 ```bash
 playwright codegen localhost:7860
