@@ -1,6 +1,6 @@
 # Testing Gradio Apps ⚒️
 
-This repository demonstrates how to properly test Gradio applications using backend unit tests and, in particular, **UI/UX testing with Playwright**.
+This repository demonstrates how to test Gradio applications using backend unit tests and, in particular, **UI/UX tests with Playwright**.
 
 
 
@@ -14,10 +14,7 @@ https://github.com/user-attachments/assets/d18bf492-3a5c-42f7-9e2c-7ab581e6ae9c
 
 When building Gradio apps, you should test both the:
 
-1. **Backend Functions** - Test your core logic with regular Python unit tests
-2. **UI/UX** - Test the user interface and user interactions with the Gradio web app.
-
-## Testing Backend Functions
+1. **Backend Functions** - Many Gradio apps contain Python backend functions that can be run independently of the UI. Test these with standard Python unit tests to ensure the core logic of your app works as expected.
 
 Use standard Python testing frameworks like `pytest` or `unittest` to test your core functions independently of the Gradio interface.
 
@@ -26,27 +23,23 @@ def test_add_function():
     assert add(2, 3) == 5
 ```
 
-This is pretty standard and you probably already know how to do this (otherwise, [check out this tutorial](https://realpython.com/pytest-python-testing/)). The rest of this repo will focus on testing the Gradio UI.
+You probably already know how to do this (otherwise, [check out this tutorial](https://realpython.com/pytest-python-testing/)).
 
-## Testing the UI/UX
 
-For user interface and user interaction testing, use **Playwright** (which has a **python API**) to:
+2. **UI/UX** - In addition, you should test the interface and interactions with the Gradio web app to ensure that users experience the Gradio app as you would expect. 
+
+For user interface and user interaction testing, we recommend using **Playwright** (which has a **python API**) to:
 - Launch your Gradio app
 - Interact with UI components (inputs, buttons, etc.)
-- Verify that the UI updates as expected
+- Verify that the UI appears or updates as expected
 
-**Why Playwright for testing your Gradio apps?**
+*Why do we recommend Playwright for testing your Gradio apps?*
 
-1. **Playwright has Python API**: Write tests entirely in Python
-2. **Fits great with Gradio**: Works seamlessly with Gradio's web interface 
-3. **Playwright's test generator**: Playwright's Test Generator can automatically write tests by recording your interactions
+1. **Playwright has Python API**: You can write your tests, including all of the web browser interactions, entirely in Python (just like your Gradio web app!).
+2. **Playwright fits great with Gradio**: Playwright works out-of-the-box with Gradio, and in fact, we use Playwright within Gradio itself for our interaction tests.
+3. **Playwright Codegen**: The best part is that Playwright comes with a Test Generator that can automatically write tests in Python by recording your interactions, as shown at the top of this README.
 
-### Basic Playwright Test Flow
-
-1. Start your Gradio app
-2. Navigate to the app URL
-3. Fill inputs, click buttons, etc.
-4. Assert expected outputs appear
+Here's what a typical interaction test written with Playwright will look like:
 
 ```python
 def test_calculator_ui():
@@ -72,7 +65,7 @@ def test_calculator_ui():
 
 ## Example App & Testing
 
-This repo includes a complete, simple Gradio app as well as the backend and UI/UX tests for that app. First, clone this repo and install the requirements.
+This repo includes a complete, simple Gradio calculator app as well as the backend and UI/UX tests for that app. First, clone this repo and install the requirements.
 
 #### Installation
 
@@ -85,26 +78,17 @@ cd testing-gradio-apps
 
 2. Install the requirements
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
+3. Install Playwright
 
+```bash
+playwright install
+```
 
-This repo includes `app.py` - a simple calculator with two numeric inputs and a few simple operations:
-- Add
-- Subtract  
-- Multiply
-- Divide
-- Square
-
-You can run the Gradio web app with: `python app.py`.
-
-If you use in this calculator, you will see the following expected behavior:
-
-* If you click on "Square", the second numeric input disappears
-* If you try to Divide by 0, you get an error
-* Otherwise, behaves like a standard calculator by performing the requested operation when clicking the submit button.
+After you've run the commands above in your terminal (only need to do it once), then you are ready to run the tests:
 
 #### Backend Testing
 
@@ -117,8 +101,14 @@ The UI/UX Playwright test file (called `ui_tests.py`) tests the expected behavio
 * You can run the Playwright tests by running `pytest ui_tests.py`.
 
 
-**Tip:** Instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
+## Exercise for the Reader
+
+Now that you know how to set up and run the interaction tests,  As mentioned earlier, instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
 
 ```bash
 playwright codegen localhost:7860
 ```
+
+## For LLMs
+
+If you'd like to an LLM to generate tests for you, I recommend providing an example Gradio app & the Playwright tests for that Gradio app so that they understand what the syntax should be. [This Markdown file]() contains the example Gradio calculator app mentioned above and its associated tests. In our experience, Playwright's Codegen tool works better than asking an LLM to write Playwright tests from scratch, but your mileage may vary!
