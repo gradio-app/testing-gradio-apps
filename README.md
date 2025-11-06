@@ -63,7 +63,7 @@ def test_calculator_ui():
     demo.close()
 ```
 
-## Example App & Testing
+## Example app & tests
 
 This repo includes a complete, simple Gradio calculator app as well as the backend and UI/UX tests for that app. First, clone this repo and install the requirements.
 
@@ -88,7 +88,11 @@ pip install -r requirements.txt
 playwright install
 ```
 
-After you've run the commands above in your terminal (only need to do it once), then you are ready to run the tests:
+After you've run the commands above in your terminal (only need to do it once), then you are ready to run the Gradio app and the tests:
+
+#### Gradio app
+
+The example Gradio app in this repo is a simple calculator that can you can run by typing `python run.py` in your terminal.
 
 #### Backend Testing
 
