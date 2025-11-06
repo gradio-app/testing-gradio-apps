@@ -105,7 +105,7 @@ The UI/UX Playwright test file (called `ui_tests.py`) tests the expected behavio
 * You can run the Playwright tests by running `pytest ui_tests.py`.
 
 
-## Exercise for the Reader
+## Exercise for the reader
 
 Now that you know how to set up and run the interaction tests, **we recommend you write 1 more interaction test for the calculator app**. As mentioned earlier, instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
 
