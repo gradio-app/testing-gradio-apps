@@ -121,4 +121,4 @@ playwright codegen localhost:7860
 
 ## For LLMs
 
-If you'd like to an LLM to generate tests for you, I recommend providing an example Gradio app & the Playwright tests for that Gradio app so that they understand what the syntax should be. [This Markdown file]() contains the example Gradio calculator app mentioned above and its associated tests. In our experience, Playwright's Codegen tool works better than asking an LLM to write Playwright tests from scratch, but your mileage may vary!
+If you'd like to an LLM to generate tests for you, I recommend providing an example Gradio app & the Playwright tests for that Gradio app so that they understand what the syntax should be. [This Markdown file](example-app-and-tests.md) contains the example Gradio calculator app mentioned above and its associated UI/UX tests. In our experience, Playwright's Codegen tool works better than asking an LLM to write Playwright tests from scratch, but your mileage may vary!
