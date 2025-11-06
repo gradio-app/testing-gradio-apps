@@ -106,6 +106,12 @@ The UI/UX Playwright test file (called `ui_tests.py`) tests the expected behavio
 Now that you know how to set up and run the interaction tests,  As mentioned earlier, instead of writing the Playwright tests manually, you can use Playwright's codegen tool to record your interactions and generate test code automatically:
 
 ```bash
+python app.py
+```
+
+and then (assuming the Gradio app launches on port 7860):
+
+```bash
 playwright codegen localhost:7860
 ```
 
